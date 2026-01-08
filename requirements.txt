@@ -6,4 +6,3 @@ pydantic
 typing_extensions
 python-docx
 streamlit
-io
