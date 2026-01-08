@@ -155,6 +155,7 @@ elif st.session_state['register'] == True:
                     file_name=f"{file_name}_roadmap.docx",
                     mime="application/vnd.openxmlformats-officedocument.wordprocessingml.document",
                     icon=":material/download:",
+                    width='stretch'
                 )
 
     except Exception as e:
@@ -173,3 +174,4 @@ elif st.session_state['register'] == True:
 
 else:
     st.switch_page("password.py")
+
