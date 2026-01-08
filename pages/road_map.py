@@ -18,6 +18,10 @@ elif st.session_state['register'] == True:
 
     load_dotenv(dotenv_path=r"my_api_key.env")
     os.environ["OPENAI_API_KEY"] = os.getenv("openai_api")
+    os.environ["LANGCHAIN_TRACING_V2"] = "true"
+    os.environ["LANGCHAIN_ENDPOINT"] = "https://api.smith.langchain.com"
+    os.environ["LANGCHAIN_API_KEY"] = os.getenv("langsmith_api")
+    os.environ["LANGCHAIN_PROJECT"] = "langgraph-StudyMaterial-generation"
 
     # getting models
     # model = ChatOpenAI(model="gpt-4.1-nano-2025-04-14")
@@ -174,4 +178,5 @@ elif st.session_state['register'] == True:
 
 else:
     st.switch_page("password.py")
+
 
