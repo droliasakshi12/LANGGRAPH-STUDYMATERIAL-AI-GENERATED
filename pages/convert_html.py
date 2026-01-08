@@ -15,7 +15,7 @@ if 'register' not in st.session_state:
 if st.session_state['register'] == True:
 
     load_dotenv(dotenv_path=r"my_api_key.env")
-    os.environ["OPENAI_API_KEY"] = os.getenv("openai_api_key")
+    os.environ["OPENAI_API_KEY"] = os.getenv("openai_api")
 
     models = selecting_model()
     model = ChatOpenAI(model=models)
@@ -152,3 +152,4 @@ if st.session_state['register'] == True:
 
 else:
     st.switch_page("password.py")
+
