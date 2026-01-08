@@ -181,6 +181,7 @@ elif st.session_state['register'] == True:
                 file_name=f"{final_material_filename}_material.docx",
                 mime="application/vnd.openxmlformats-officedocument.wordprocessingml.document",
                 icon=":material/download:",
+                width='stretch'
             )
 
     html_content = st.button("GENERATE HTML", use_container_width=True)
@@ -197,3 +198,4 @@ elif st.session_state['register'] == True:
 
 else:
     st.switch_page("password.py")
+
