@@ -60,8 +60,10 @@ if st.session_state['register'] == True:
             Keep links as plain <a> tags
             Return ONLY valid HTML
             No explanations, comments, or extra text outside the HTML
-            do not change the sequence of the content keep it as it is 
+            do not change the sequence of the contnt keep it as it is 
+            make sure to keep the image link in image tag.
         """
+        
         response = model.invoke(prompt).content
 
         return {"html": response}
@@ -152,4 +154,5 @@ if st.session_state['register'] == True:
 
 else:
     st.switch_page("password.py")
+
 
