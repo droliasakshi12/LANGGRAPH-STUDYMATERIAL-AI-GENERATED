@@ -19,9 +19,9 @@ elif st.session_state['register'] == True:
 
     load_dotenv(dotenv_path=r"my_api_key.env")
     os.environ["OPENAI_API_KEY"] = os.getenv("openai_api") or st.secrets["openai_api"]
-    os.environ["LANGCHAIN_TRACING_V2"] = os.getenv("LANGCHAIN_TRACING_V2") or st.secrets["LANGCHAIN_TRACING_V2"]
-    os.environ["LANGCHAIN_ENDPOINT"] = os.getenv("LANGCHAIN_ENDPOINT") or st.secrets["LANGCHAIN_ENDPOINT"]
-    os.environ["LANGCHAIN_API_KEY"] = os.getenv("langsmith_api") or st.secrets["langsmith_api"]
+    os.environ["LANGCHAIN_TRACING_V2"] = os.getenv("LANGCHAIN_TRACING_V2") or st.secrets.get["LANGCHAIN_TRACING_V2"]
+    os.environ["LANGCHAIN_ENDPOINT"] = os.getenv("LANGCHAIN_ENDPOINT") or st.secrets.get["LANGCHAIN_ENDPOINT"]
+    os.environ["LANGCHAIN_API_KEY"] = os.getenv("langsmith_api") or st.secrets.get["langsmith_api"]
     os.environ["LANGCHAIN_PROJECT"] = os.getenv("LANGCHAIN_PROJECT") or st.secrets["LANGCHAIN_PROJECT"]
 
     # getting models
@@ -179,4 +179,5 @@ elif st.session_state['register'] == True:
 
 else:
     st.switch_page("password.py")
+
 
