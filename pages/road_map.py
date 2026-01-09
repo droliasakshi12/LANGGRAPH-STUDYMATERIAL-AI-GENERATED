@@ -10,6 +10,7 @@ from docx import Document
 from pages.model_selection import selecting_model
 import io
 
+
 if 'register' not in st.session_state:
     st.session_state['register'] = False
 
@@ -18,10 +19,10 @@ elif st.session_state['register'] == True:
 
     load_dotenv(dotenv_path=r"my_api_key.env")
     os.environ["OPENAI_API_KEY"] = os.getenv("openai_api")
-    os.environ["LANGCHAIN_TRACING_V2"] = "true"
-    os.environ["LANGCHAIN_ENDPOINT"] = "https://api.smith.langchain.com"
+    os.environ["LANGCHAIN_TRACING_V2"] = os.getenv("LANGCHAIN_TRACING_V2")
+    os.environ["LANGCHAIN_ENDPOINT"] = os.getenv("LANGCHAIN_ENDPOINT")
     os.environ["LANGCHAIN_API_KEY"] = os.getenv("langsmith_api")
-    os.environ["LANGCHAIN_PROJECT"] = "langgraph-StudyMaterial-generation"
+    os.environ["LANGCHAIN_PROJECT"] = os.getenv("LANGCHAIN_PROJECT")
 
     # getting models
     # model = ChatOpenAI(model="gpt-4.1-nano-2025-04-14")
@@ -31,7 +32,6 @@ elif st.session_state['register'] == True:
     # -------------------MODEL SELECTION-----------------------------
     models = selecting_model()
     model = ChatOpenAI(model=models)
-    st.sidebar.warning("NOTE - For better results use Model : 'gpt-4.1-mini','gpt-3.5-turbo','gpt-5-mini'")
 
     # creating base model
 
@@ -121,10 +121,11 @@ elif st.session_state['register'] == True:
     }
 
     # compiling the graph into workflow
-    roadmap_workflow = graph.compile()
-    final_output_road_map = roadmap_workflow.invoke(initial_state_road_map)
+
     try:
         if generate:
+            roadmap_workflow = graph.compile()
+            final_output_road_map = roadmap_workflow.invoke(initial_state_road_map)
             roadmap_content = final_output_road_map['road_map']
             st.markdown(roadmap_content)
 
@@ -160,7 +161,6 @@ elif st.session_state['register'] == True:
                     file_name=f"{file_name}_roadmap.docx",
                     mime="application/vnd.openxmlformats-officedocument.wordprocessingml.document",
                     icon=":material/download:",
-                    width='stretch'
                 )
 
     except Exception as e:
@@ -179,7 +179,3 @@ elif st.session_state['register'] == True:
 
 else:
     st.switch_page("password.py")
-
-
-
-
