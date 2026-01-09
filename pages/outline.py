@@ -25,7 +25,6 @@ elif st.session_state['register'] == True:
 
     models = selecting_model()
     model = ChatOpenAI(model=models)
-    st.sidebar.warning("NOTE - For better results use Model : 'gpt-4.1-mini','gpt-3.5-turbo','gpt-5-mini'")
 
     # ---------------------EVALUATING CLASS--------------------
 
@@ -111,20 +110,21 @@ elif st.session_state['register'] == True:
                                 "approved": END, "not_approved": 'optimize'})
     graph.add_edge("optimize", 'evaluate')
 
-    # compiling graph
-    workflow = graph.compile()
-    initial_state = {
-        "topic": content,
-        "iteration": 1,
-        "max_iteration ": 3
-    }
-
-    final_output = workflow.invoke(initial_state)
+    
 
     # taking user input and invoke
     generate = st.button(label="GENERATE OUTLINE", use_container_width=True)
 
     if generate:
+        # compiling graph
+        workflow = graph.compile()
+        initial_state = {
+        "topic": content,
+        "iteration": 1,
+        "max_iteration ": 3
+    }
+
+        final_output = workflow.invoke(initial_state)
         outline_output = final_output['outline']
         st.markdown(outline_output)
 
@@ -163,7 +163,6 @@ elif st.session_state['register'] == True:
                     file_name=f"{outline_file_name}_outline.docx",
                     mime="application/vnd.openxmlformats-officedocument.wordprocessingml.document",
                     icon=":material/download:",
-                    width='stretch'
                 )
 
     except Exception as e:
@@ -181,5 +180,3 @@ elif st.session_state['register'] == True:
 
 else:
     st.switch_page("password.py")
-
-
