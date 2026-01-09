@@ -24,6 +24,11 @@ elif st.session_state['register'] == True:
 
     models = selecting_model()
     model = ChatOpenAI(model=models)
+    st.sidebar.warning(
+        "NOTE - For better results use Model : 
+        'gpt-4.1-mini',
+        'gpt-3.5-turbo',
+        'gpt-5-mini'")
 
     # ---------------------------------------------------------------
     # creating a pydantic model to evalaute the content
@@ -198,4 +203,5 @@ elif st.session_state['register'] == True:
 
 else:
     st.switch_page("password.py")
+
 
