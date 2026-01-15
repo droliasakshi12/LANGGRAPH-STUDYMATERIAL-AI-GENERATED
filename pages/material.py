@@ -5,8 +5,8 @@ if 'register' not in st.session_state:
 
 if st.session_state['register'] == True:
 
-    st.title("CONTENT GENERATION USING LANGGRAPH")
-
+    st.title("📚Generate Study Material")
+    st.caption("✅Select below to Generate Your content")
     roadmap_button = st.button("GENERATE ROADMAP",use_container_width=True)
     outline_button = st.button("GENERATE OUTLINE",use_container_width=True)
     final_material_button = st.button("GENERATE MATERIAL",use_container_width=True)
@@ -27,3 +27,4 @@ if st.session_state['register'] == True:
 
 else:
     st.switch_page("password.py")
+    
