@@ -9,6 +9,7 @@ from pydantic import BaseModel ,Field
 import operator
 import streamlit as st 
 from pages.model_selection import selecting_model
+import time 
 
 if 'register' not in st.session_state:
     st.session_state['register'] = False
@@ -19,6 +20,7 @@ if st.session_state['register'] == True:
     load_dotenv(dotenv_path=r"my_api_key.env")
     os.environ["OPENAI_API_KEY"] = os.getenv("openai_api")
 
+    st.title("🔑Keywords Generation")
     #getting the models 
     models = selecting_model()
     model = ChatOpenAI(model=models)
@@ -51,7 +53,8 @@ if st.session_state['register'] == True:
     #creating the function to get the keyword 
     def generate_keyword(state:keywordstate):
         prompt = f"""
-            you are a seo generator you have to create the keywords based on the {state['topic']}.Ensure to include all kind of keywords .Provide the best keyword for seo. """
+            You are an seo keyword generator who have to generate the keyword based on the topic :{state['topic']}.
+            You have to provide the best possible words that would help a content to be popular and trending.seo. """
             
         response = model.invoke(prompt).content
         
@@ -89,7 +92,7 @@ if st.session_state['register'] == True:
 
     #taking user input 
     user_input = st.text_input(label = "ENTER THE TOPIC")
-    generate = st.button(label="GENERATE KEYWORD")
+    generate = st.button(label="GENERATE KEYWORD",width='stretch')
 
     #creating he graph 
     graph = StateGraph(keywordstate)
@@ -119,7 +122,9 @@ if st.session_state['register'] == True:
     final_output = keyword_workflow.invoke(initial_state)
 
     if generate :
-        st.markdown(final_output['keywords'])
+        with st.spinner("⛷️Generating Response...."):
+            time.sleep(5)
+            st.markdown(final_output['keywords'])
         
 
 else:
