@@ -9,6 +9,7 @@ import streamlit as st
 from docx import Document
 from pages.model_selection import selecting_model
 import io
+import time
 
 
 if 'register' not in st.session_state:
@@ -23,6 +24,8 @@ elif st.session_state['register'] == True:
     evaluate_model = ChatOpenAI(model="gpt-3.5-turbo")
     optimized_model = ChatOpenAI(model="gpt-5-nano-2025-08-07")
 
+    st.title("📑Outline Generation")
+    st.space("small")
     models = selecting_model()
     model = ChatOpenAI(model=models)
 
@@ -80,6 +83,9 @@ elif st.session_state['register'] == True:
             return "not_approved"
 
     # --------------------------------------------------------------------------
+    st.space("small")
+    st.subheader("Upload Your File Below👇")
+    st.caption("✅Make sure The File Must Be Docx File")
     read_file = st.file_uploader("choose a file")
     full_text = []
 
@@ -110,30 +116,30 @@ elif st.session_state['register'] == True:
                                 "approved": END, "not_approved": 'optimize'})
     graph.add_edge("optimize", 'evaluate')
 
+     # compiling graph
     
-
-    # taking user input and invoke
-    generate = st.button(label="GENERATE OUTLINE", use_container_width=True)
-
-    if generate:
-        # compiling graph
-        workflow = graph.compile()
-        initial_state = {
+    initial_state = {
         "topic": content,
         "iteration": 1,
         "max_iteration ": 3
     }
 
-        final_output = workflow.invoke(initial_state)
-        outline_output = final_output['outline']
-        st.markdown(outline_output)
+    # taking user input and invoke
+    generate = st.button(label="GENERATE OUTLINE", use_container_width=True)
+
+    if generate:
+        with st.spinner("⛷️Generating Response...."):
+            time.sleep(5)
+            workflow = graph.compile()
+            final_output = workflow.invoke(initial_state)
+            outline_output = final_output['outline']
+            st.markdown(outline_output)
 
         # creating a session state to store the data
         st.session_state["outline_output"] = outline_output
 
     try:
-        insert_outline = st.button(
-            "INSERT DATA INTO FILE", use_container_width=True)
+        insert_outline = st.button("INSERT DATA INTO FILE", use_container_width=True)
 
         if insert_outline:
             outline_file_name = read_file.name.replace(".docx", "")
@@ -154,7 +160,7 @@ elif st.session_state['register'] == True:
                 bio = io.BytesIO()
                 doc.save(bio)
                 bio.seek(0)
-                st.success("Data inserted successfully!!")
+                st.success("📝Data inserted successfully!!")
 
                 # creating a download button to download the file
                 st.download_button(
@@ -163,6 +169,7 @@ elif st.session_state['register'] == True:
                     file_name=f"{outline_file_name}_outline.docx",
                     mime="application/vnd.openxmlformats-officedocument.wordprocessingml.document",
                     icon=":material/download:",
+                    width = 'stretch'
                 )
 
     except Exception as e:
