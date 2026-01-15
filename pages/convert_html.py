@@ -8,6 +8,7 @@ import streamlit as st
 from docx import Document
 import streamlit.components.v1 as component
 from pages.model_selection import selecting_model
+import time 
 
 if 'register' not in st.session_state:
     st.session_state['register'] = False
@@ -16,7 +17,8 @@ if st.session_state['register'] == True:
 
     load_dotenv(dotenv_path=r"my_api_key.env")
     os.environ["OPENAI_API_KEY"] = os.getenv("openai_api")
-
+    st.title("🖼️HTML Generation")
+    st.space("small")
     models = selecting_model()
     model = ChatOpenAI(model=models)
     st.sidebar.warning(
@@ -24,6 +26,7 @@ if st.session_state['register'] == True:
 
     class htmlstate(TypedDict):
         topic: str
+        prompt : str
         html: str
 
     def html_format(state: htmlstate):
@@ -31,44 +34,17 @@ if st.session_state['register'] == True:
         prompt = f"""You are an HTML study-material generator.
 
             Convert the CONTENT into a complete professional HTML study page.
-
-            CONTENT:
-            {state['topic']}
-
-            DESIGN - follow the same format for all the content generated. (no changes are to be made)
-            White page background for whole content 
-            Centered white container (max-width: 900px)
-            Font: Segoe UI, Arial, sans-serif
-            Blue h1, h2, h3 headings
-            Section boxes with a left blue border
-            Dark, rounded code blocks
-            Green “Outcome” boxes after examples
-            Soft shadow and rounded corners for containers
-
-            STRUCTURE (use only what exists in the content) 
-            Title + subtitle
-            Introduction
-            keep  all the code in <pre><code>.
-            the topics included in the content 
-
-         
-            RULES (Strictly follow the rules for all)
-            Nothing extra is to be included.
-            Do not add, remove, summarize, or generate any content
-            Use the structure only where the content supports it
-            Wrap all code strictly inside <pre><code>
-            Keep links as plain <a> tags
-            Return ONLY valid HTML
-            No explanations, comments, or extra text outside the HTML
-            do not change the sequence of the contnt keep it as it is 
-            make sure to keep the image link in image tag.
+            Bsed on the given prompt :{state['prompt']} you have to generate the content 
+            for the topic:{state['topic']}
         """
-        
         response = model.invoke(prompt).content
 
-        return {"html": response}
+        return {"html": response , 'prompt': response}
 
     # uploading the file
+    st.space("small")
+    st.subheader("Upload Your File Below👇")
+    st.caption("✅Make sure The File Must Be Docx File")
     uploaded_file = st.file_uploader("choose the file")
     full_text = []
 
@@ -94,26 +70,60 @@ if st.session_state['register'] == True:
 
     # compiling graph
     workflow = graph.compile()
+    st.space("small")
+    st.subheader("✍️Prompting")
+    st.caption("you can edit the prompt as per your requirements")
+    prompt = st.text_area(label="Enter Prompt",value='''
+            You are an HTML study-material generator.
+            Convert the CONTENT into a complete professional HTML study page.
+            DESIGN - follow the same format for all the content generated. (no changes are to be made)
+            White page background for whole content 
+            Centered white container (max-width: 900px)
+            Font: Segoe UI, Arial, sans-serif
+            Blue h1, h2, h3 headings
+            Section boxes with a left blue border
+            Dark, rounded code blocks
+            Green “Outcome” boxes after examples
+            Soft shadow and rounded corners for containers
 
+            STRUCTURE (use only what exists in the content) 
+            Title + subtitle
+            Introduction
+            keep  all the code in <pre><code>.
+            the topics included in the content 
+
+            RULES (Strictly follow the rules for all)
+            Nothing extra is to be included.
+            Do not add, remove, summarize, or generate any content
+            Use the structure only where the content supports it
+            Wrap all code strictly inside <pre><code>
+            Keep links as plain <a> tags
+            Return ONLY valid HTML
+            No explanations, comments, or extra text outside the HTML
+            do not change the sequence of the content keep it as it is 
+            make sure to keep the images in the image tag.''',
+            height=500 , width='stretch')
+    
     initial_state = {
-        "topic": content
+        "topic": content,
+        "prompt":prompt
     }
 
     generate = st.button("GENERATE HTML", use_container_width=True)
 
     if generate:
-        # invoking graph
-        final_output = workflow.invoke(initial_state)
-        html_output = final_output["html"]
-        st.markdown(html_output)
-        # create a session state
-        st.session_state['html_output'] = html_output
-        component.html(
-            st.session_state['html_output'], height=800, scrolling=True)
+        with st.spinner("⛷️Generating Response...."):
+            time.sleep(5)
+            # invoking graph
+            final_output = workflow.invoke(initial_state)
+            html_output = final_output["html"]
+            st.markdown(html_output)
+            # create a session state
+            st.session_state['html_output'] = html_output
+            component.html(st.session_state['html_output'], height=800, scrolling=True) #giving the output in html format
 
     try:
-        insert_html = st.button("INSERT DATA INTO FILE",
-                                use_container_width=True)
+        insert_html = st.button("INSERT DATA INTO FILE",use_container_width=True)
 
         if insert_html:
             html_file_name = uploaded_file.name.replace(".docx", ".html")
@@ -123,7 +133,7 @@ if st.session_state['register'] == True:
             else:
                 with open(f"{html_file_name}", 'w', encoding="utf-8") as file:
                     file.write(st.session_state['html_output'])
-            st.success("data inserted successfully!!")
+            st.success("📝Data inserted successfully!!")
 
             st.download_button(
                 label="DOWNLOAD HTML FILE",
@@ -131,7 +141,7 @@ if st.session_state['register'] == True:
                 file_name=f"{html_file_name}",
                 mime="text/html",
                 icon=":material/download:",
-                width='stretch'
+                width ='stretch'
 
             )
     except Exception as e:
@@ -154,5 +164,3 @@ if st.session_state['register'] == True:
 
 else:
     st.switch_page("password.py")
-
-
