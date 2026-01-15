@@ -8,6 +8,7 @@ if 'register' not in st.session_state:
 
 if st.session_state['register'] == True:
 
+    st.title("🤖 Model Selection")
     # loading the json model file
     model_file = "model.json"
 
@@ -23,7 +24,7 @@ if st.session_state['register'] == True:
         # used to find if file exists on the device or not
         if os.path.exists(model_file):
             # reading the json file
-            with open(model_file, 'r') as file:
+            with open(model_file,'r') as file:
                 try:
                     # json.load is used to read the data from json file
                     data = json.load(file)
@@ -35,14 +36,14 @@ if st.session_state['register'] == True:
             return model_list
 
     # saving the data in model file
-
     def save_model(model_input):
-        # using the json file to insert the new data
-
-        with open(model_file, "w") as file:
-            # dump is used to insert the data into json file
-            json.dump(model_input, file, indent=4)
-
+        try:
+            # using the json file to insert the new data
+            with open(model_file, "w") as file:
+                # dump is used to insert the data into json file
+                json.dump(model_input, file, indent=4)
+        except Exception as e :
+            st.error(f"Error {e}")
     def list_model():
         if 'model_list' not in st.session_state:
             # getting the data from file
@@ -52,7 +53,7 @@ if st.session_state['register'] == True:
 
         # inserting new model
         model_input = st.text_input("ENTER THE MODEL NAME")
-        model_input = model_input.replace('"', '').replace("/", '')
+        model_input = model_input.replace('"','').replace("/",'')
         st.caption("make sure to enter the full name of the model")
 
         # creating a button to add new model
@@ -71,12 +72,13 @@ if st.session_state['register'] == True:
                 save_model(st.session_state['model_list'])
                 st.success(f"MODEL : {model_input} ADDED!!")
 
-    def selecting_model():
 
+    def selecting_model():
+        
         list_model()
         model_selection = st.sidebar.radio(
             label="SELECT MODEL", options=st.session_state['model_list'])
-        st.success(f"MODEL : {model_selection} SELECTED")
+        st.success(f"MODEL: {model_selection} SELECTED")
 
         return model_selection
 
@@ -87,3 +89,5 @@ if st.session_state['register'] == True:
 
 else:
     st.switch_page("password.py")
+
+
