@@ -1,4 +1,8 @@
-# LANGGRAPH-STUDYMATERIAL-AI-GENERATED
+# 📔LANGGRAPH-STUDYMATERIAL-AI-GENERATED
+
+<p align="center"> 
+   <img src="py.jpg" alt="Alt text" width="200" height="200">
+</p>
 
 **AI-Generated Study Materials for LangGraph Concepts & Learning Resources**
 
@@ -12,7 +16,7 @@ A curated repository of **AI-generated study material** focused on **LangGraph**
 - [Features](#features)  
 - [Motivation](#motivation)   
 - [Installation](#installation)  
-- [Usage](#usage)  
+- [Usage](#usage) 
 
 ---
 
@@ -38,7 +42,7 @@ LangGraph is an emerging paradigm in building reliable agent workflows using gra
 
 ---
 
-# ⚙️ Installation
+## ⚙️ Installation
 
 To use or explore this repository locally:
 
@@ -47,9 +51,28 @@ To use or explore this repository locally:
    git clone https://github.com/droliasakshi12/LANGGRAPH-STUDYMATERIAL-AI-GENERATED.git
    ```
 
-# 🛠️Install Python dependencies
+## **🛠️Install Python dependencies**
 ``` bash
 pip install -r requirements.txt
 ```
 
-# 🧪usage 
+## 🧪usage 
+- This project helps to create study material using generative ai skills. Made the use of openai model which helps to generate the study material.
+- We have make the use of streamlit for better UI interface for the users.
+- Multiple pages are created in the pages folder like roadmap , outline , final material , html generation , keyword generation , etc.
+- Created a json file to store the model can add the model if required.
+- The application can accessed only when you are loggedin else you cannot login.
+
+
+<b><p>⭐ If you found this repository useful, consider giving it a star!</p>
+    <p>Happy Coding 🐍✨</p></b>
+
+👤 Github  : [@droliasakshi12](https://github.com/droliasakshi12)<br>
+📩 Email   : droliasakshi601@gmail.com <br>
+🔗 Linkdin : https://www.linkedin.com/in/sakshi-drolia12<br>
+<h4>Credits</h4>
+<b></b>Future Vision Computer Institute</b><BR>
+🌐 Website : https://futurevisioncomputers.com/
+<br>
+<b><h5>Author</h5></b>
+<b>Sakshi Drolia</b>
