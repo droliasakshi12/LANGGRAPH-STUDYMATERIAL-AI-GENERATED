@@ -1,7 +1,7 @@
 # 📔LANGGRAPH-STUDYMATERIAL-AI-GENERATED
 
 <p align="center"> 
-   <img src="password_page.png" alt="Alt text" width="200" height="200">
+   <img src="password_page.png" alt="Alt text" width="700" height="700">
 </p>
 
 **AI-Generated Study Materials for LangGraph Concepts & Learning Resources**
@@ -35,7 +35,9 @@ This repository contains **study material automatically generated using AI** to 
 - 🤖 Focused on practical understanding for real-world usage
 
 ---
-
+<p align="center"> 
+   <img src="roadmap.png" alt="Alt text" width="700" height="700">
+</p>
 ## 💡 Motivation
 
 LangGraph is an emerging paradigm in building reliable agent workflows using graph-based execution. While official docs are comprehensive, many learners benefit from structured summaries, examples, and analogies. This repository aims to bridge that gap using AI-generated material that can be reviewed, improved, and expanded over time.
@@ -63,9 +65,12 @@ pip install -r requirements.txt
 - Created a json file to store the model can add the model if required.
 - The application can accessed only when you are loggedin else you cannot login.
 
-
+<p align="center"> 
+   <img src="outline.png" alt="Alt text" width="700" height="700">
+</p>
 <b><p>⭐ If you found this repository useful, consider giving it a star!</p>
     <p>Happy Coding 🐍✨</p></b>
+
 
 👤 Github  : [@droliasakshi12](https://github.com/droliasakshi12)<br>
 📩 Email   : droliasakshi601@gmail.com <br>
