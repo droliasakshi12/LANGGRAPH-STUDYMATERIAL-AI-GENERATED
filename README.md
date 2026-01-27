@@ -1,7 +1,7 @@
 # 📔LANGGRAPH-STUDYMATERIAL-AI-GENERATED
 
 <p align="center"> 
-   <img src="py.jpg" alt="Alt text" width="200" height="200">
+   <img src="password_page.png" alt="Alt text" width="200" height="200">
 </p>
 
 **AI-Generated Study Materials for LangGraph Concepts & Learning Resources**
