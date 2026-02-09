@@ -117,7 +117,7 @@ elif st.session_state['register'] == True:
     st.subheader("✍️Prompting")
     st.caption("you can edit the prompt as per your requirements")
     prompt = st.text_area(label="Enter the prompt:",value='''You are an experienced professional educator and tutor.
-            Write a structured, theory-focused educational Study Material.
+            Write a structured, theory-focused educational Study Material tutorial for beginners.
             Requirements:
             - Explain concepts clearly with descriptive theoretical depth, progressing from basics to key ideas,maintain the balance of theoretical and practical knowledge. 
             - Organize content into clear sections with headings.
@@ -218,3 +218,4 @@ elif st.session_state['register'] == True:
 
 else:
     st.switch_page("password.py")
+
