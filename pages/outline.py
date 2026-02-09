@@ -54,7 +54,9 @@ elif st.session_state['register'] == True:
     def generate_outline(state: outlinestate):
         prompt = f"""
         create a descriptive outline on {state['topic']} explain each topic and sub topic from it,make the topic look bold , you have to replace the normal words with seo keywords where ever required
-        include the topics nd sub-topics in points.
+        include the topics nd sub-topics in points 
+        you have to explore all the tutorial websites and generate the content.
+        Must include all the topic and beginner friendly.
         """
 
         response = model.invoke(prompt).content
@@ -187,3 +189,4 @@ elif st.session_state['register'] == True:
 
 else:
     st.switch_page("password.py")
+
