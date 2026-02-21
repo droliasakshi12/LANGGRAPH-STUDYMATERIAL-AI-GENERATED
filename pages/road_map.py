@@ -55,10 +55,9 @@ elif st.session_state['register'] == True:
     # creating a function to generate the content
     def generate_roadmap(state: roadstate):
         prompt = f"""generate a short and comprehemsive road map on {state['topic']} as a study guide for students.
-        replace the normal words with seo keywords where required.
-        should not be in que/ans format make it in the format of roadmap .
+        make it in the format of roadmap.
         You have to check all the other tutorial site like tutorial points , geeks  for geeks , etc . 
-        Must be beginner friendly and include all the key points that is required to learn the particular topic. """
+        include all the topics and sub topics explore the sites and provide all the topic. """
 
         road_map = model.invoke(prompt).content
         return {"road_map": road_map, 'content_history': [road_map]}
@@ -181,6 +180,7 @@ elif st.session_state['register'] == True:
         
 else:
     st.switch_page("password.py")
+
 
 
 
