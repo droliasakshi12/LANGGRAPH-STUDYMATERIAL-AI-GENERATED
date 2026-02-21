@@ -57,7 +57,7 @@ elif st.session_state['register'] == True:
         prompt = f"""generate a short and comprehemsive road map on {state['topic']} as a study guide for students.
         replace the normal words with seo keywords where required.
         should not be in que/ans format make it in the format of roadmap .
-        You have to explore all other tutorial sites which provide study material tutorial like tutorial points , geek for geeks , etc.
+        You have to check all the other tutorial site like tutorial points , geeks  for geeks , etc . 
         Must be beginner friendly and include all the key points that is required to learn the particular topic. """
 
         road_map = model.invoke(prompt).content
@@ -181,5 +181,6 @@ elif st.session_state['register'] == True:
         
 else:
     st.switch_page("password.py")
+
 
 
