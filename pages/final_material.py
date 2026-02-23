@@ -125,8 +125,9 @@ elif st.session_state['register'] == True:
             - In each section: (follow the points mentioned below) 
             • Provide paragraph-based theory explanations.
             • Include concise real-world examples with outcomes.(codes if required)
-            • Add  5-10 descriptive practice questions  along with code outputs compulsory at the end of the content.
+            • Add  5-10 descriptive practice questions along with code outputs compulsory at the end of the content.
             - End with links for study resources relevant to the topic and beginner friendly websites(like w3schools,geeksforgeeks,etc.)
+            - Each topic must be long and detailed including all the required topics.
             - provide the links that exists.
             - Academic yet simple tone.
             - No visuals, emojis, filler, or repetition.
@@ -218,4 +219,5 @@ elif st.session_state['register'] == True:
 
 else:
     st.switch_page("password.py")
+
 
