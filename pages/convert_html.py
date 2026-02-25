@@ -74,34 +74,33 @@ if st.session_state['register'] == True:
     st.subheader("✍️Prompting")
     st.caption("you can edit the prompt as per your requirements")
     prompt = st.text_area(label="Enter Prompt",value='''
-            You are an HTML study-material generator.
-            Convert the CONTENT into a complete professional HTML study page.
-            DESIGN - follow the same format for all the content generated. (no changes are to be made)
-            White page background for whole content 
-            Centered white container (max-width: 900px)
-            Font: Segoe UI, Arial, sans-serif
-            Blue h1, h2, h3 headings
-            Section boxes with a left blue border
-            Dark, rounded code blocks
-            Green “Outcome” boxes after examples
-            Soft shadow and rounded corners for containers
+**🎨 DESIGN GUIDELINES (Strictly Follow)**
+* Clean white page background
+* Centered white container (max-width: 900px)
+* Font: Segoe UI, Arial, sans-serif
+* h1, h2, h3 color: #163c6b
+* Section boxes with left border in #163c6b
+* Rounded containers with soft shadows
+* Code blocks: dark theme, rounded, color #dfefff
+* “Outcome” boxes: green #dfefff, placed immediately after examples
+* Tables (if present): clean, readable, consistent with design
 
-            STRUCTURE (use only what exists in the content) 
-            Title + subtitle
-            Introduction
-            keep  all the code in <pre><code>.
-            the topics included in the content 
+⚠️ Keep design format fully consistent. No visual or structural changes.
+**🧱 STRUCTURE RULES**
+* Use only existing content (title, subtitle, introduction, topics)
+* Maintain original sequence and order
+* Use sections only where naturally supported
+* Wrap all code strictly in `<pre><code>`
+* Use tables only if already present
+* Keep links as `<a>` and images as `<img>`
+**🚫 STRICTLY PROHIBITED**
+* Do not add, remove, rewrite, summarize, or generate new content
+* Do not change structure or order
+* No extra text, comments, or explanations
 
-            RULES (Strictly follow the rules for all)
-            Nothing extra is to be included.
-            Do not add, remove, summarize, or generate any content
-            Use the structure only where the content supports it
-            Wrap all code strictly inside <pre><code>
-            Keep links as plain <a> tags
-            Return ONLY valid HTML
-            No explanations, comments, or extra text outside the HTML
-            do not change the sequence of the content keep it as it is 
-            make sure to keep the images in the image tag.''',
+**✅ OUTPUT REQUIREMENT**
+Return **ONLY valid HTML**.
+''',
             height=500 , width='stretch')
     
     initial_state = {
@@ -164,3 +163,4 @@ if st.session_state['register'] == True:
 
 else:
     st.switch_page("password.py")
+
