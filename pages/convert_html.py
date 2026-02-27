@@ -74,6 +74,7 @@ if st.session_state['register'] == True:
     st.subheader("✍️Prompting")
     st.caption("you can edit the prompt as per your requirements")
     prompt = st.text_area(label="Enter Prompt",value='''
+you have to create separate  html file for each topic like for topic 1 one html the n for topic 2 new html and   like wise .make sure for every topic there is a new html  .provide html for every topic together in same file 
 **🎨 DESIGN GUIDELINES (Strictly Follow)**
 * Clean white page background
 * Centered white container (max-width: 900px)
@@ -100,6 +101,7 @@ if st.session_state['register'] == True:
 
 **✅ OUTPUT REQUIREMENT**
 Return **ONLY valid HTML**.
+
 ''',
             height=500 , width='stretch')
     
@@ -163,4 +165,5 @@ Return **ONLY valid HTML**.
 
 else:
     st.switch_page("password.py")
+
 
