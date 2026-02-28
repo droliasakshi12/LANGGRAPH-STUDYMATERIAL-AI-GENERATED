@@ -128,7 +128,7 @@ elif st.session_state['register'] == True:
                 final_output_road_map = roadmap_workflow.invoke(initial_state_road_map)
                 roadmap_content = final_output_road_map['road_map']
                 st.markdown(roadmap_content)
-
+                
                 st.session_state['roadmap_content'] = roadmap_content
 
         # inserting data into file
@@ -180,6 +180,7 @@ elif st.session_state['register'] == True:
         
 else:
     st.switch_page("password.py")
+
 
 
 
