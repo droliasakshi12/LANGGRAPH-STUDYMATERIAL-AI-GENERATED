@@ -119,20 +119,20 @@ elif st.session_state['register'] == True:
     prompt = st.text_area(label="Enter the prompt:",value='''You are an experienced professional educator and tutor.
             Write a structured, theory-focused educational Study Material tutorial for beginners.
             Requirements:
-            - Explain concepts clearly with descriptive theoretical depth, progressing from basics to key ideas,maintain the balance of theoretical and practical knowledge. 
+            - Explain concepts clearly with descriptive theoretical depth, progressing from basics to key ideas,
+               maintain the balance of theoretical and practical knowledge. 
             - Organize content into clear sections with headings.
             - the content generated must be static do not change the format.
             - In each section: (follow the points mentioned below) 
             • Provide paragraph-based theory explanations.
             • Include concise real-world examples with outcomes.(codes if required)
-            • Add  5-10 descriptive practice questions along with code outputs compulsory at the end of the content.
-            - End with links for study resources relevant to the topic and beginner friendly websites(like w3schools,geeksforgeeks,etc.)
+            • code outputs compulsory at the end of the content.
             - Each topic must be long and detailed including all the required topics.
             - provide the links that exists.
             - Academic yet simple tone.
             - No visuals, emojis, filler, or repetition.
             - Be concise, accurate, and educational.
-            - Ensure to make the use of seo keywords in the middle of the material.''',
+            - Ensure to make the use of seo keywords in the middle of the material.,
             height=500,width='stretch')
 
     # creating and compiling the graph
@@ -219,5 +219,6 @@ elif st.session_state['register'] == True:
 
 else:
     st.switch_page("password.py")
+
 
 
