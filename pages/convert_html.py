@@ -74,36 +74,37 @@ if st.session_state['register'] == True:
     st.subheader("✍️Prompting")
     st.caption("you can edit the prompt as per your requirements")
     prompt = st.text_area(label="Enter Prompt",value='''
-you have to create separate  html file for each topic like for topic 1 one html the n for topic 2 new html and   like wise .make sure for every topic there is a new html  .provide html for every topic together in same file 
-**🎨 DESIGN GUIDELINES (Strictly Follow)**
-* Clean white page background
-* Centered white container (max-width: 900px)
-* Font: Segoe UI, Arial, sans-serif
-* h1, h2, h3 color: #163c6b
-* Section boxes with left border in #163c6b
-* Rounded containers with soft shadows
-* Code blocks: dark theme, rounded, color #dfefff
-* “Outcome” boxes: green #dfefff, placed immediately after examples
-* Tables (if present): clean, readable, consistent with design
-
-⚠️ Keep design format fully consistent. No visual or structural changes.
-**🧱 STRUCTURE RULES**
-* Use only existing content (title, subtitle, introduction, topics)
-* Maintain original sequence and order
-* Use sections only where naturally supported
-* Wrap all code strictly in `<pre><code>`
-* Use tables only if already present
-* Keep links as `<a>` and images as `<img>`
-**🚫 STRICTLY PROHIBITED**
-* Do not add, remove, rewrite, summarize, or generate new content
-* Do not change structure or order
-* No extra text, comments, or explanations
-
-**✅ OUTPUT REQUIREMENT**
-Return **ONLY valid HTML**.
-
-''',
-            height=500 , width='stretch')
+Create **separate full HTML files for each topic** (Topic 1 → one file, Topic 2 → next file, etc.).
+Use the **exact CSS below inside `<style>`** and follow all rules strictly.
+```html
+<style>
+  body {font-family:"Segoe UI",Arial,sans-serif;background:#fff;margin:0;padding:2rem 1rem;color:#000;}
+  .container {max-width:900px;margin:0 auto;background:#fff;border-radius:10px;box-shadow:0 4px 8px rgba(22,60,107,0.1);padding:2rem 2.5rem;}
+  h1,h2,h3 {color:#163c6b;margin-top:0;}
+  section {border-left:5px solid #163c6b;padding-left:1rem;margin-bottom:2rem;}
+  pre {background:#163c6b;color:#dfefff;border-radius:8px;padding:1rem;overflow-x:auto;}
+  a {color:#163c6b;text-decoration:underline;}
+</style>
+### RULES
+* One **complete HTML document per topic**
+* Keep **original content, order, structure exactly**
+* Use `<section>` blocks
+* Wrap code in:
+  ```html
+  <pre><code>...</code></pre>
+  ```
+* Keep `<a>` and `<img>` as given
+* Use tables only if present
+* **Subtopic headings must be bold** using `<strong>`
+### DO NOT
+* Add, remove, rewrite, or summarize content
+* Change order or structure
+* Add comments or explanations
+### OUTPUT
+Return **ONLY valid HTML** for **all topic files together**
+### INPUT
+Convert the study material exactly as provided.
+''', height=500 , width='stretch')
     
     initial_state = {
         "topic": content,
