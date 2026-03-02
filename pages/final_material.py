@@ -116,7 +116,8 @@ elif st.session_state['register'] == True:
     st.space("small")
     st.subheader("✍️Prompting")
     st.caption("you can edit the prompt as per your requirements")
-    prompt = st.text_area(label="Enter the prompt:",value='''You are an experienced professional educator and tutor.
+    prompt = st.text_area(label="Enter the prompt:",value='''
+    You are an experienced professional educator and tutor.
             Write a structured, theory-focused educational Study Material tutorial for beginners.
             Requirements:
             - Explain concepts clearly with descriptive theoretical depth, progressing from basics to key ideas,
@@ -132,8 +133,8 @@ elif st.session_state['register'] == True:
             - Academic yet simple tone.
             - No visuals, emojis, filler, or repetition.
             - Be concise, accurate, and educational.
-            - Ensure to make the use of seo keywords in the middle of the material.,
-            height=500,width='stretch')
+            - Ensure to make the use of seo keywords in the middle of the material.'''
+            ,height=500,width='stretch')
 
     # creating and compiling the graph
     graph = StateGraph(studystate)
@@ -219,6 +220,7 @@ elif st.session_state['register'] == True:
 
 else:
     st.switch_page("password.py")
+
 
 
 
